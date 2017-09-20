@@ -22,12 +22,12 @@ void setup()
 {
     MIDI.begin(MIDI_CHANNEL_OMNI);
 //    Serial.begin(38400);
-    DDRB = DDRB & B11000000; // only 6 lsb
-    DDRC = DDRC & B11110000; // only 4 lsb
-    DDRD = DDRD & B00000011; // only 6 msb
+    DDRB &= B11000000; // only 6 lsb
+    DDRC &= B11110000; // only 4 lsb
+    DDRD &= B00000011; // only 6 msb
     // activate input pullups on real input pins
-    PORTB = PORTB | B00000011; // only 2 lsb
-    PORTD = PORTD | B11111100; // only 6 msb
+    PORTB |= B00000011; // only 2 lsb
+    PORTD |= B11111100; // only 6 msb
 }
 
 // The loop function is called in an endless loop
@@ -69,7 +69,7 @@ void loop()
         PORTB &= B11011111;
         nop();
         inputImage[3] = readKeys;
-        DDRB = DDRB & B11000000;
+        DDRB &= B11000000;
 
         DDRC |= B00000001;//Pin14
         PORTC &= B11111110;
@@ -81,7 +81,7 @@ void loop()
         PORTC &= B11111101;
         nop();
         inputImage[5] = readKeys;
-        DDRC = DDRC & B11110000;
+        DDRC &= B11110000;
 
         DDRC |= B00000100;//Pin16
         PORTC &= B11111011;
